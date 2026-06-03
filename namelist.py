@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-# field_book_path = "./sample_Seisui2022/field_book.txt"
-field_book_path = "./sample_Seisui2022/field_book_1m.txt"
-input_dir = "./sample_Seisui2022"
-output_dir = "./output"
+from pathlib import Path
 
-fig_dir = "./fig"
+field_book_path = Path("./sample_Seisui2022/field_book_1m.txt")
+input_dir = Path("./sample_Seisui2022")
+output_dir = Path("./output")
+
+fig_dir = Path("./fig")

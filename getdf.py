@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
+from pathlib import Path
 import pandas as pd
 
 
-def get_float(x) -> float:
-    return float(x)
+def get_xctd_df(fpath: Path) -> tuple[pd.DataFrame, str, str]:
 
-
-def get_xctd_df(fpath: str) -> tuple[pd.DataFrame, str, str]:
     dpth_list = []
     tmp_list = []
     cnd_list = []
@@ -32,12 +29,12 @@ def get_xctd_df(fpath: str) -> tuple[pd.DataFrame, str, str]:
             d = data[i].split(",")
             if len(d) != 7:
                 break
-            dpth = get_float(d[0])
-            tmp = get_float(d[1])
-            cnd = get_float(d[2])
-            sal = get_float(d[3])
-            sve = get_float(d[4])
-            den = get_float(d[5])
+            dpth = float(d[0])
+            tmp = float(d[1])
+            cnd = float(d[2])
+            sal = float(d[3])
+            sve = float(d[4])
+            den = float(d[5])
 
             dpth_list.append(dpth)
             tmp_list.append(tmp)

@@ -9,7 +9,6 @@ import gsw
 
 import namelist as nl
 
-
 # --- fig settings
 # salinity
 min_sp = 33  # psu
@@ -59,7 +58,6 @@ def plot_tsdiagram(
 
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    ax.set_title(f"{obskey}")
 
     # x axis
     ax.set_xlabel("Salinity[psu]")
@@ -93,23 +91,21 @@ def plot_tsdiagram(
     # plot t-s curve
     ax.scatter(sp, tmp, c="k", s=0.5)
 
-    plt.savefig(fig_path, dpi=512)
+    plt.savefig(fig_path)
     plt.close()
 
 
 # read field book
 fbook_df = pd.read_csv(nl.field_book_path)
 
-for i in range(len(fbook_df)):
-    obskey = fbook_df["obskey"].iloc[i]
-    print(obskey)
+for data_fpath in nl.output_dir.glob("*.csv"):
+    print(f"Processing {data_fpath}")
 
-    fpath = glob(f"{nl.output_dir}/{obskey}*.csv")[0]
-    df = pd.read_csv(fpath, index_col=0)
+    df = pd.read_csv(data_fpath)
 
     sp = df["Salinity"].to_numpy()
     tmp = df["Temp"].to_numpy()
-    fig_path = f"{fig_dir}/{obskey}_{p}.png"
+    fig_path = f"{fig_dir}/{data_fpath.stem}.png"
 
     plot_tsdiagram(
         sp,
